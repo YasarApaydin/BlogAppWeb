@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block title %}
+    {{ writer.WriterName }}
+{% endblock %}
+
+{% block content %}
+<section class="main-content-w3layouts-agileits">
+    <div class="container text-center">
+        <img src="{{ writer.WriterImage.url }}" 
+             alt="{{ writer.WriterName }}" 
+             class="rounded-circle img-thumbnail mb-4" 
+             style="width: 180px; height: 180px; object-fit: cover;">
+             
+        <div class="inner-sec">
+            <div class="profile-info p-5 bg-light mx-auto mw-100">
+                <form action="#" >
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="validationCustom01" class="font-weight-bold">Ad Soyad</label>
+                            <p class="text-muted" style="font-size: 1.2em;">{{ writer.WriterName }}</p>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="content" class="font-weight-bold">Yazar Hakkında</label>
+                            <p class="text-muted" style="font-size: 1.2em;">{{ writer.WriterAbout }}</p>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="validationCustom01" class="font-weight-bold">Yazarın Diğer Blogları</label>
+                            {% for blog in blogs %}
+                                <a href="{% url 'blog_details' blog.slug %}" class="text-primary" style="font-size: 1.1em; text-decoration: none;">
+                                    <p>{{ blog.BlogTitle }}</p>
+                                </a> 
+                            {% endfor %}
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

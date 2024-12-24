@@ -1,0 +1,133 @@
+{% extends "layout.html"%}
+{% load static %}
+{% block title %}
+Kayıt Sayfası
+{% endblock %}
+
+{% block content %}
+
+<style>
+/* Genel Stil Ayarları */
+.container {
+    margin-top: 50px;
+}
+
+.tittle {
+    font-family: 'Poppins', sans-serif;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.form-label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #34495e;
+}
+
+.form-control, .form-control-file {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.form-control:focus {
+    border-color: #2980b9;
+    box-shadow: 0 0 5px rgba(41, 128, 185, 0.5);
+}
+
+textarea {
+    resize: none;
+}
+
+.btn-primary {
+    background-color: #2980b9;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #1c5986;
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    padding: 10px;
+    border-radius: 5px;
+}
+</style>
+
+<section class="main-content-w3layouts-agileits">
+    <div class="container">
+        <h3 class="tittle">Yeni Blog Yazarı Kayıt Formu</h3>
+        <div class="inner-sec">
+            <div class="login p-5 bg-light mx-auto mw-100" style="max-width: 600px;">
+                <form action="#" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% if error %}
+                    <div class="alert alert-danger">{{ error }}</div>
+                    {% endif %}
+
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="validationCustom01" class="form-label">Ad Soyad</label>
+                            <input type="text" class="form-control" name="name" id="validationCustom01"
+                                placeholder="Adınızı ve Soyadınızı Girin" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="email" class="form-label">E-posta Adresiniz</label>
+                            <input type="email" class="form-control" name="mail" id="email"
+                                placeholder="E-posta adresinizi girin" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="content" class="form-label">Kendinizi Tanıtın</label>
+                            <textarea name="about" class="form-control" id="content" placeholder="Kısa bir tanıtım yazısı"
+                                rows="5" required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="image" class="form-label">Profil Resmi Yükleyin</label>
+                            <input type="file" name="image" class="form-control-file" id="image" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="password" class="form-label">Şifre</label>
+                            <input type="password" name="password" class="form-control" id="password"
+                                placeholder="Şifrenizi girin" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="repassword" class="form-label">Şifre Tekrar</label>
+                            <input type="password" name="repassword" class="form-control" id="repassword"
+                                placeholder="Şifrenizi tekrar girin" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary submit mb-4">Kayıt Ol</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

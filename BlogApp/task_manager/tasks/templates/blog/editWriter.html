@@ -1,0 +1,84 @@
+{% extends "layout.html"%}
+{% load static %}
+{% block title %}
+Profil Güncelle
+{%endblock%}
+
+{%block content%}
+<section class="main-content">
+    <div class="container py-5">
+        <h3 class="text-center text-uppercase font-weight-bold text-primary mb-4">Profilinizi Güncelleyin</h3>
+        <div class="inner-sec">
+            <div class="login p-5 bg-white shadow rounded mx-auto" style="max-width: 700px;">
+                <form action="#" method="post" enctype="multipart/form-data">
+                    {% csrf_token%}
+                    <div class="form-group">
+                        <label for="name" class="font-weight-bold text-secondary">Ad Soyad</label>
+                        <input type="text" class="form-control" name="name" id="name" required="" value="{{writer.WriterName}}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mail" class="font-weight-bold text-secondary">Mail Adresiniz</label>
+                        <input type="email" name="mail" class="form-control" id="mail" readonly value="{{writer.WriterMail}}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="about" class="font-weight-bold text-secondary">Yazar Hakkında</label>
+                        <textarea name="about" class="form-control" id="about" rows="5" required>{{writer.WriterAbout}}</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="image" class="font-weight-bold text-secondary">Resminiz</label>
+                        {% if writer.WriterImage %}
+                        <img src="{{ writer.WriterImage.url }}" alt="{{writer.WriterName}}" class="img-thumbnail mb-2" style="max-width: 150px;">
+                        {% endif %}
+                        <input type="file" name="image" class="form-control-file" id="image">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="font-weight-bold text-secondary">Şifreniz</label>
+                        <input type="password" name="password" class="form-control" id="password" placeholder="*********">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block font-weight-bold mt-4">Güncelle</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{%endblock%}
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f8f9fa;
+    }
+
+    h3 {
+        font-size: 2rem;
+        color: #007bff;
+    }
+
+    label {
+        font-size: 1rem;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .form-control {
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+    }
+
+    .form-control:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 0 .2rem rgba(0,123,255,.25);
+    }
+</style>

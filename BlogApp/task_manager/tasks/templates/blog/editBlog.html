@@ -1,0 +1,112 @@
+{% extends "layout.html"%}
+{% load static %}
+{% block title %}
+Blog Güncelle
+{%endblock%}
+
+{%block content%}
+
+<style>
+/* Güncellenmiş CSS */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+}
+
+.container {
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h3.tittle {
+    text-align: center;
+    color: #2c3e50;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+label {
+    color: #34495e;
+    font-weight: bold;
+}
+
+.form-control, .form-control-file {
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.btn-primary {
+    background: #2980b9;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+.btn-primary:hover {
+    background: #1b4f72;
+}
+
+.alert {
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.text-center {
+    text-align: center;
+    margin-top: 20px;
+}
+</style>
+
+<section class="main-content-w3layouts-agileits">
+    <div class="container">
+        <h3 class="tittle">Blog Güncelle</h3>
+        <div class="inner-sec">
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="p-5 bg-light mw-100" style="width: 100%; max-width: 600px;">
+                    <form action="#" method="post" enctype="multipart/form-data">
+                        {% csrf_token%}
+                        {% if error %}
+                        <div class="alert alert-danger">
+                            {{error}}
+                        </div>
+                        {% endif %}
+                        {% if success %}
+                        <div class="alert alert-success">
+                            {{success}}
+                        </div>
+                        {% endif %}
+                        <input hidden class="form-control" name="id" required value="{{user.id}}">
+
+                        <div class="form-group">
+                            <label for="title" class="mb-2">Blog Başlığı</label>
+                            <input type="text" class="form-control" name="title" id="title" placeholder="Blog başlığını giriniz." required value="{{blog.BlogTitle}}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="content" class="mb-2">Blog İçeriği</label>
+                            <textarea name="content" class="form-control" id="content" placeholder="Blog içeriğini giriniz." rows="5" required>{{blog.BlogContent}}</textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="image" class="mb-2">Blog Resmi</label>
+                            <input type="file" name="image" class="form-control-file" id="image">
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary submit">Blog Düzenle</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{%endblock%}

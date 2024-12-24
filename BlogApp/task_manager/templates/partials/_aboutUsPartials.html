@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hakkımızda - Blog App</title>
+    <style>
+        /* Hakkımızda başlığı */
+        .about-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #343a40;
+            margin-bottom: 15px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Hakkımızda metni */
+        .about-description {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            text-align: justify;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* "Devamını Oku" butonu */
+        .read .read-m {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+
+        .read .read-m:hover {
+            background-color: #0056b3;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .about-title {
+                font-size: 28px;
+            }
+
+            .about-description {
+                font-size: 16px;
+                padding: 0 20px;
+            }
+
+            .read .read-m {
+                font-size: 14px;
+                padding: 8px 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h3 class="about-title">Hakkımızda</h3>
+    <p class="about-description">
+        Merhaba! Biz, Blog App ekibi olarak tutkuyla başladığımız bu yolculukta siz değerli okuyucularımızla buluşmanın
+        mutluluğunu yaşıyoruz. Bilginin, deneyimlerin ve fikirlerin paylaşılmasını esas alan platformumuzda, her gün
+        büyüyen topluluğumuz için kaliteli içerikler üretmek en büyük önceliğimizdir.
+    </p>
+    <div class="read">
+        <a href="{% url 'aboutUs' %}" class="btn btn-primary read-m">Devamını Oku</a>
+    </div>
+</body>
+
+</html>

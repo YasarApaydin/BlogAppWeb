@@ -1,0 +1,105 @@
+{% extends "layout.html"%}
+{% load static %}
+{% block title %}
+Login Page
+{%endblock%}
+
+{%block content%}
+
+<style>
+/* Genel stil ayarları */
+.container {
+    margin-top: 50px;
+}
+
+.tittle {
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 32px;
+}
+
+.form-group label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #555;
+}
+
+.form-control {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.form-text {
+    font-size: 12px;
+    color: #777;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+a {
+    font-size: 14px;
+    color: #007bff;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+</style>
+
+<section class="main-content-w3layouts-agileits">
+    <div class="container">
+        <h3 class="tittle">Giriş Yap</h3>
+        <div class="row inner-sec">
+            <div class="login p-5 bg-light mx-auto mw-100" style="max-width: 500px;">
+                <form action="#" method="post">
+                    {% csrf_token %}
+                    {% if error %}
+                    <div class="alert alert-danger">
+                        {{error}}
+                    </div>
+                    {% endif %}
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1" class="mb-2">E-posta Adresi</label>
+                        <input type="email" class="form-control" name="mail" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="E-posta adresinizi giriniz" required>
+                        <small id="emailHelp" class="form-text">E-posta adresiniz gizli kalacaktır.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="mb-2">Şifre</label>
+                        <input type="password" name="password" class="form-control" id="password"
+                            placeholder="Şifrenizi giriniz" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary submit mb-4">Giriş Yap</button>
+                    <p><a href="{% url 'register' %}">Hesabınız yok mu? Kayıt olun.</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{%endblock%}

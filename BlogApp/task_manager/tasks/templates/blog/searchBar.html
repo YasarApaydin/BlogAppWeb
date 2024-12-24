@@ -1,0 +1,126 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}
+    Anasayfa
+{% endblock %}
+
+{% block content %}
+
+<style>
+/* Stil Değişiklikleri */
+.container {
+    margin-top: 50px;
+}
+
+.tittle {
+    font-family: 'Poppins', sans-serif;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.card {
+    margin-bottom: 30px;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 14px;
+    color: #34495e;
+    margin-bottom: 15px;
+}
+
+.btn-primary {
+    background-color: #2980b9;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #1c5986;
+}
+
+.no-results {
+    text-align: center;
+    font-size: 18px;
+    color: #7f8c8d;
+    margin-top: 20px;
+}
+</style>
+
+<section class="main-content-w3layouts-agileits">
+    <div class="container">
+        <h3 class="tittle">Blog Yazıları</h3>
+
+        {% if query %}
+            <h2>"{{ query }}" arama sonuçları:</h2>
+        {% else %}
+            <h2>Arama yapabilmek için bir kelime girin.</h2>
+        {% endif %}
+
+        <div class="inner-sec">
+            <div class="row">
+                {% if results %}
+                    {% for blog in results %}
+                        <div class="col-lg-4">
+                            <div class="card">
+                                <a href="{% url 'blog_details' blog.slug %}">
+                                    <img src="{{ blog.BlogImage.url }}" class="card-img-top img-fluid"
+                                        alt="{{ blog.BlogTitle }}">
+                                </a>
+
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        <strong>Yazar:</strong> {{ blog.writer.WriterName }}
+                                    </p>
+                                    <h5 class="card-title">{{ blog.BlogTitle }}</h5>
+                                    <p class="card-text">
+                                        {{ blog.BlogContent|truncatechars:100 }}
+                                    </p>
+
+                                    <a href="{% url 'blog_details' blog.slug %}" class="btn btn-primary">Devamını Oku</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="no-results">Sonuç bulunamadı.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

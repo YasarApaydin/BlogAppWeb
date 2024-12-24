@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block title %}
+    My Blogs
+{% endblock %}
+
+{% block content %}
+
+<style>
+    .card-img-top {
+        width: 100%;          
+        height: 220px;      
+        object-fit: cover;    
+    }
+
+    /* New font style and text changes */
+    .card-body {
+        font-family: 'Arial', sans-serif; /* Change to desired font */
+        color: #4a4a4a; /* Change text color */
+    }
+
+    .card-title {
+        font-size: 1.2em; /* Adjust title font size */
+        font-weight: bold; /* Make the title bold */
+        color: #333333; /* Change title text color */
+    }
+
+    .card-text {
+        font-size: 1em; /* Adjust body text font size */
+        color: #666666; /* Change body text color */
+    }
+
+    .read-m {
+        font-size: 1em; /* Adjust button text size */
+        background-color: #007bff; /* Change button background color */
+        color: white; /* Change button text color */
+        padding: 10px 20px; /* Adjust padding */
+        border-radius: 5px; /* Add rounded corners */
+    }
+
+    .read-m:hover {
+        background-color: #0056b3; /* Change button color on hover */
+        text-decoration: none; /* Remove underline on hover */
+    }
+</style>
+
+<section class="main-content-w3layouts-agileits">
+    <div class="container">
+        <h3 class="tittle">Blog Posts</h3>
+        <div class="inner-sec">
+            <div class="left-blog-info-w3layouts-agileits text-left">
+                <div class="row">
+                    {% for blog in blogs %}
+                        <div class="col-lg-4 card">
+                            <a href="{% url 'blog_details' blog.slug %}">
+                                <img src="{{ blog.BlogImage.url }}" class="card-img-top img-fluid" alt="{{ blog.BlogTitle }}">
+                            </a>
+
+                            <div class="card-body">
+                                <p class="card-text">
+                                    <strong>Yazar:</strong> {{ blog.writer.WriterName }}
+                                </p>
+                                <h5 class="card-title">
+                                    {{ blog.BlogTitle }}
+                                </h5>
+                                <p class="card-text mb-3">
+                                    {{ blog.BlogContent|truncatechars:50 }}
+                                </p>
+
+                                <a href="{% url 'blog_details' blog.slug %}" class="btn btn-primary read-m">Devamını Oku</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
